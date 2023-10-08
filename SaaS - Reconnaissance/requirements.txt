@@ -1,2 +1,5 @@
 pytesseract
 opencv-python
+flask
+werkzeug
+numpy

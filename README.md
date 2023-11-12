@@ -1,12 +1,16 @@
 # Perceptive Automotive
 
-## Modélisation
+### Cas d'utilisation
+<img src="./UML/use-case.png" alt="Use Case Diagram" height="400" />
 
-### Use case
-<img src="./UML/use-case.png" alt="Use Case Diagram" height="350" />
+## Architecture de l'infrastructure embarquée
+<img src="./images/sensor_info.webp" alt="Architecture embarquée" height="400" />
 
-## Architecture de l'infrastructure
-<img src="./images/client-serveur-bdd.jpeg" alt="Architecture client-serveur-bdd" height="300" />
+## Architecture de l'infrastructure SaaS
+<img src="./images/client-serveur-bdd.jpeg" alt="Architecture client-serveur-bdd" height="250" />
+
+### Diagramme de séquence
+<img src="./UML/jwt-sequence-diagram.png" alt="Diagramme de séquence SaaS" height="250" />
 
 ## Architecture logicelle
 

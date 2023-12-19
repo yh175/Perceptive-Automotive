@@ -9,6 +9,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+  // console.log('HERE', req.body, typeof req.body)
   // Save User to Database
   User.create({
     username: req.body.username,

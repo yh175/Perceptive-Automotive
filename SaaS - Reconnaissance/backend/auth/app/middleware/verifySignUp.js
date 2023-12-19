@@ -16,6 +16,10 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       return;
     }
 
+    if (!req.body.email) {
+      return next()
+    }
+
     // Email
     User.findOne({
       where: {
@@ -45,7 +49,7 @@ checkRolesExisted = (req, res, next) => {
       }
     }
   }
-  
+  console.log('on passe par là')
   next();
 };
 

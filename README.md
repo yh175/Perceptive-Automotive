@@ -1,7 +1,7 @@
 # Perceptive Automotive
 
 ### Cas d'utilisation
-<img src="./UML/use-case.png" alt="Use Case Diagram" height="400" />
+<img src="./UML/use-case.vpd.jpg" alt="Use Case Diagram" height="400" />
 
 ## Architecture de l'infrastructure embarquée
 <img src="./images/sensor_info.webp" alt="Architecture embarquée" height="400" />

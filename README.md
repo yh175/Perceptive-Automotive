@@ -30,4 +30,4 @@
 python generate_traffic.py -n 100 -w 50
 python manual_control.py
 ```
-* Appuyer sur la touche 'R' pour enregistrer le comportoment de l'expert
+* Appuyer sur la touche 'R' pour enregistrer le comportement de l'expert

@@ -18,4 +18,7 @@ module.exports = function(app) {
 
   app.put("/api/car/update/:id", controllerCar.updateCar); // Nouvelle route PUT pour la mise à jour d'une voiture
 
+  app.get("/api/car/get/:id", controllerCar.getCar); // Nouvelle route pour récupérer une voiture par ID
+
+  app.delete("/api/car/delete/:id", controllerCar.deleteCar); // Nouvelle route DELETE pour supprimer une voiture par ID
 };

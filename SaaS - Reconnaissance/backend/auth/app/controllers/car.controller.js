@@ -58,3 +58,45 @@ exports.updateCar = (req, res) => {
     });
   };
   
+exports.getCar = (req, res) => {
+    const id = req.params.id;
+
+    Car.findByPk(id)
+    .then(car => {
+        if (car) {
+            res.send(car);
+        } else {
+            res.status(404).send({
+            message: `Cannot find Car with id=${id}.`
+            });
+        }
+    }).catch(err => {
+        res.status(500).send({
+            message: "Error retrieving Car with id=" + id
+        });
+    });
+};
+
+exports.deleteCar = (req, res) => {
+    const id = req.params.id;
+
+    Car.destroy({
+        where: { id: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            res.send({
+                message: "Car was deleted successfully!"
+            });
+        } else {
+            res.send({
+                message: `Cannot delete Car with id=${id}. Maybe Car was not found!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Could not delete Car with id=" + id
+        });
+    });
+};

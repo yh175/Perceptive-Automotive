@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Header from "../header/Header";
 
 function CarModify() {
   const { id } = useParams();
@@ -18,13 +19,20 @@ function CarModify() {
     };
 
     fetchCarData();
-  }, [id]);
+  }, [id]);     
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCarData({
       ...carData,
       [name]: value
+    });
+  };
+
+  const handleStatusChange = (e) => {
+    setCarData({
+      ...carData,
+      status: e.target.value
     });
   };
 
@@ -50,9 +58,10 @@ function CarModify() {
 
   return (
     <div>
-      <h3>Modifier la voiture</h3>
-      <div className="row justify-content-end">
-        <div className="col-auto">
+      <Header></Header>
+      <div className="row justify-content-center">
+        <h3>Modifier la voiture</h3>
+        <div className="col-9">
           <div className="form-floating mb-3">
             <input type="text" className="form-control" id="plate_number" name="plate_number" placeholder="Immatricule" value={carData.plate_number} onChange={handleChange} />
             <label htmlFor="plate_number">Immatricule</label>
@@ -76,6 +85,14 @@ function CarModify() {
           <div className="form-floating mb-3">
             <input type="number" className="form-control" id="seating_capacity" name="seating_capacity" placeholder="Nombre de places" value={carData.seating_capacity} onChange={handleChange} />
             <label htmlFor="seating_capacity">Nombre de places</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" id="statut" value={carData.status} onChange={handleStatusChange} aria-label="Floating label select example">
+              <option value="available">Disponible</option>
+              <option value="in_service">En service</option>
+              <option value="maintenance">En maintenance</option>
+            </select>
+            <label for="statut">Statut</label>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={() => navigate("/Administration/Voitures")}>Annuler</button>

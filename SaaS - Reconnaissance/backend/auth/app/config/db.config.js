@@ -1,8 +1,8 @@
 module.exports = {
   HOST: "localhost",
   USER: "root",
-  PASSWORD: "",
-  DB: "perceptiveautomotive",
+  PASSWORD: "root",
+  DB: "perceptiveautomotive_auth",
   dialect: "mysql",
   pool: {
     max: 5,

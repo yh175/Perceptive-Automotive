@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 import Header from "../header/Header";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importez Bootstrap ici
-import CarContext from './CarContext';
 
 function Car() {
 
@@ -45,23 +44,23 @@ function Car() {
 
   // Fonction pour envoyer les données du formulaire pour enregistrer une nouvelle voiture
   const handleSubmit = async () => {
+    navigate("Administration/Voitures/Modifier")
+  };
+
+  // Fonction pour supprimer une voiture
+  const handleDelete = async (carId) => {
     try {
-      const response = await fetch("http://localhost:8080/api/car/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+      const response = await fetch(`http://localhost:8080/api/car/delete/${carId}`, {
+        method: "DELETE",
       });
-      const data = await response.json();
-      console.log("Car added:", data);
-      // Actualiser la liste des voitures après ajout
-      fetchCarData();
-      // Fermer le modal après ajout
-      const modal = new document.getElementById("exampleModal");
-      modal.hide();
+      if (response.ok) {
+        // Actualiser la liste des voitures après suppression
+        fetchCarData();
+      } else {
+        console.error("Failed to delete car");
+      }
     } catch (error) {
-      console.error("Error adding car:", error);
+      console.error("Error deleting car:", error);
     }
   };
 
@@ -105,7 +104,11 @@ function Car() {
                       >
                         Modifier
                       </button>
-                      <button type="button" className="btn btn-outline-secondary btn-sm">Supprimer</button>
+                      <button 
+                        type="button" 
+                        className="btn btn-outline-secondary btn-sm"
+                        onClick={() => handleDelete(car.id)}
+                      >Supprimer</button>
                     </td>
                   </tr>
                 ))}

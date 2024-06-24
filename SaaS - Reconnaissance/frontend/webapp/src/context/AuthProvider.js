@@ -1,4 +1,3 @@
-// src/context/AuthProvider.js
 import React, { createContext, useState, useEffect } from "react";
 import authService from "../services/auth.service";
 
@@ -9,16 +8,19 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
+    console.log("Current user from localStorage:", currentUser);
     setUser(currentUser);
   }, []);
 
   const login = async (username, password) => {
     const data = await authService.login(username, password);
+    console.log("User logged in:", data);
     setUser(data);
     return data;
   };
 
   const logout = () => {
+    console.log("User logged out");
     authService.logout();
     setUser(null);
   };

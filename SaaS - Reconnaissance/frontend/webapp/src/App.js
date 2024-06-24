@@ -9,6 +9,7 @@ import NotFound from './notfound/NotFound';
 import Signup from './signup/Signup';
 import Car from './car/Car';
 import CarModify from './car/CarModify';
+import AdminPanel from './adminpanel/AdminPanel';
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
             <Route path="Administration/Voitures/Modifier/:id" element={
               <PrivateRoute>
                 <CarModify />
+              </PrivateRoute>
+            } />
+            <Route path="Administration" element={
+              <PrivateRoute>
+                <AdminPanel />
               </PrivateRoute>
             } />
             {/* Page 404*/}

@@ -17,7 +17,7 @@ function LoginForm() {
     try {
       const data = await login(username, password);
       setResponseText(`Réponse du serveur : ${JSON.stringify(data)}`);
-      navigate("/Administration/Voitures");
+      navigate("/Administration");
     } catch (error) {
       console.error("Erreur lors de la connexion : ", error);
       setResponseText("Erreur lors de la connexion.");

@@ -12,29 +12,31 @@ verifyToken = (req, res, next) => {
     });
   }
 
-  jwt.verify(token,
-            config.secret,
-            (err, decoded) => {
-              if (err) {
-                return res.status(401).send({
-                  message: "Unauthorized!",
-                });
-              }
-              req.userId = decoded.id;
-              next();
-            });
+  console.log("Received token:", token);
+
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      console.error("Token verification error:", err); // Log the error
+      return res.status(401).send({
+        message: "Unauthorized!"
+      });
+    }
+    // console.log("Decoded token:", decoded); // Log the decoded token
+    req.userId = decoded.id;
+    next();
+  });
 };
 
 isAdmin = (req, res, next) => {
   User.findByPk(req.userId).then(user => {
     user.getRoles().then(roles => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "admin") {
+        if (roles[i].name === "Admin") {
           next();
           return;
         }
       }
-
+      
       res.status(403).send({
         message: "Require Admin Role!"
       });

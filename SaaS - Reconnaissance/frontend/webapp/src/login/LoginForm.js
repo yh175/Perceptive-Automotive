@@ -1,4 +1,3 @@
-// src/components/LoginForm.js
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
@@ -13,16 +12,34 @@ function LoginForm() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+  
     try {
       const data = await login(username, password);
       setResponseText(`Réponse du serveur : ${JSON.stringify(data)}`);
-      navigate("/Administration");
+  
+      // Check if data and data.roles are defined
+      if (data && Array.isArray(data.roles)) {
+        const roles = data.roles; // Directly access roles since it's already an array of strings
+        console.log('Roles:', roles);
+  
+        // Check user roles and navigate accordingly
+        if (roles.includes('Admin') || roles.includes('Moderator')) {
+          navigate("/AdminPanel");
+        } else if (roles.includes('Basic User')) {
+          navigate("/Dashboard");
+        } else {
+          setResponseText("Rôle utilisateur inconnu");
+        }
+      } else {
+        console.error("Les rôles de l'utilisateur ne sont pas définis ou ne sont pas un tableau :", data);
+        setResponseText("Erreur : Les rôles de l'utilisateur ne sont pas définis ou sont mal formatés.");
+      }
     } catch (error) {
       console.error("Erreur lors de la connexion : ", error);
-      setResponseText("Erreur lors de la connexion.");
+      setResponseText("Erreur lors de la connexion");
     }
   };
+  
 
   return (
     <div className="container">
@@ -33,8 +50,18 @@ function LoginForm() {
         </center> 
       </div>
       <br></br>
-      <p>{responseText}</p> 
       <form>
+
+        <div className="row justify-content-center">
+            <div className="col-6">
+              {responseText && (
+                <div className="alert alert-danger" role="alert">
+                  {responseText}
+                </div>
+              )}
+            </div>
+        </div>
+        
         <div className="row justify-content-center">
           <div className="col-6">
             <div className="form-floating  mb-4">
@@ -74,7 +101,7 @@ function LoginForm() {
           </div>
         </div>
         <div className="text-center">
-          <p>Pas encore membre ? <a href="#!">S'inscrire</a></p>
+          <p>Pas encore membre ? <a href="Inscription">S'inscrire</a></p>
           <p>ou se connecter avec : </p>
           <button type="button" className="btn btn-link btn-floating mx-1">
             <i className="fab fa-facebook-f"></i>

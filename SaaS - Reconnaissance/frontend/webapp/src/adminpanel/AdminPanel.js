@@ -27,7 +27,7 @@ function AdminPanel() {
                 <div class="card-body">
                   <h5 class="card-title">Utilisateurs</h5>
                   <p class="card-text">X utilisateur(s) connectés sur X</p>
-                  <a href="#" class="btn btn-secondary">Gérer</a>
+                  <a href="Administration/Utilisateurs" class="btn btn-secondary">Gérer</a>
                 </div>
               </div>
             </div>

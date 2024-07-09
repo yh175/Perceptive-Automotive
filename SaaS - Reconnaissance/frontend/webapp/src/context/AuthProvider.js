@@ -1,14 +1,15 @@
 import React, { createContext, useState, useEffect } from "react";
 import authService from "../services/auth.service";
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate(); // Utilisez useNavigate ici
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
-    console.log("Current user from localStorage:", currentUser);
     setUser(currentUser);
   }, []);
 
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
     console.log("User logged out");
     authService.logout();
     setUser(null);
+    navigate('/Connexion'); // Redirection après déconnexion
   };
 
   return (

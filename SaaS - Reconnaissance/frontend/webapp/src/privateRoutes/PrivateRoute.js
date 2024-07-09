@@ -5,8 +5,6 @@ import { AuthContext } from "../context/AuthProvider";
 const PrivateRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
 
-  console.log(user);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

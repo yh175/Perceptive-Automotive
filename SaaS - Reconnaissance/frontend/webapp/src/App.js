@@ -10,6 +10,9 @@ import Signup from './signup/Signup';
 import Car from './car/Car';
 import CarModify from './car/CarModify';
 import AdminPanel from './adminpanel/AdminPanel';
+import Users from './user/Users';
+import UserModify from './user/UserModify';
+import UserPanel from './userpanel/UserPanel';
 
 function App() {
   return (
@@ -34,6 +37,21 @@ function App() {
             <Route path="Administration" element={
               <PrivateRoute>
                 <AdminPanel />
+              </PrivateRoute>
+            } />
+            <Route path="Administration/Utilisateurs" element={
+              <PrivateRoute>
+                <Users />
+              </PrivateRoute>
+            } />
+            <Route path="Administration/Utilisateur/Modifier/:id" element={
+              <PrivateRoute>
+                <UserModify />
+              </PrivateRoute>
+            } />
+            <Route path="Dashboard" element={
+              <PrivateRoute>
+                <UserPanel />
               </PrivateRoute>
             } />
             {/* Page 404*/}

@@ -29,4 +29,18 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  // Routes pour créer, supprimer et modifier un utilisateur
+  app.post("/api/users", [authJwt.verifyToken, authJwt.isAdmin], controller.createUser);
+  app.delete("/api/users/:id", [authJwt.verifyToken, authJwt.isAdmin], controller.deleteUser);
+  app.put("/api/users/:id", [authJwt.verifyToken, authJwt.isAdmin], controller.updateUser);
+
+  // Route pour mettre à jour les rôles d'un utilisateur
+  // app.put("/api/users/:id/roles", [authJwt.verifyToken, authJwt.isAdmin], controller.updateUserRoles);
+
+  // Route pour récupérer tous les utilisateurs
+  app.get("/api/users", [authJwt.verifyToken, authJwt.isAdmin], controller.getAllUsers);
+
+  // Route pour récupérer un utilisateur
+  app.get('/api/user/:id', [authJwt.verifyToken, authJwt.isAdmin], controller.getUserById);
 };

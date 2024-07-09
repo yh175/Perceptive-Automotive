@@ -2,7 +2,6 @@
 const API_URL = "http://localhost:8080/api/auth/";
 
 const login = async (username, password) => {
-  // console.log(username, password);
   const response = await fetch(API_URL + "signin", {
     method: "POST",
     headers: {
@@ -20,12 +19,15 @@ const login = async (username, password) => {
   if (data.accessToken) {
     localStorage.setItem("user", JSON.stringify(data));
   }
-  console.log(data);
+  
   return data;
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  return new Promise((resolve) => {
+    localStorage.removeItem("user");
+    resolve();
+  });
 };
 
 const getCurrentUser = () => {

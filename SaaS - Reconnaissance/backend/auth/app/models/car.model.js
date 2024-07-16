@@ -25,9 +25,23 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      location_lat: {
+        type: Sequelize.STRING,
+      },
+      location_lon: {
+        type: Sequelize.STRING,
+      },
+      price_kilometer: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
+      },
       status: {
         type: Sequelize.ENUM('available','in_service','maintenance'),
         defaultValue: 'available'
+      },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: true // Permet le stockage du nom du fichier image
       }
     });
   

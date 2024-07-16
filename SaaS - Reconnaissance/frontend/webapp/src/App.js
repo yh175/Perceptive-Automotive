@@ -13,6 +13,7 @@ import AdminPanel from './adminpanel/AdminPanel';
 import Users from './user/Users';
 import UserModify from './user/UserModify';
 import UserPanel from './userpanel/UserPanel';
+import AddReservation from './userpanel/AddReservation';
 
 function App() {
   return (
@@ -52,6 +53,11 @@ function App() {
             <Route path="Dashboard" element={
               <PrivateRoute>
                 <UserPanel />
+              </PrivateRoute>
+            } />
+            <Route path="Reserver" element={
+              <PrivateRoute>
+                <AddReservation />
               </PrivateRoute>
             } />
             {/* Page 404*/}

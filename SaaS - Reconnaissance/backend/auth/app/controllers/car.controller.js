@@ -5,7 +5,10 @@ const Car = db.car;
 exports.addCar = (req, res) => {
     // console.log('HERE', req.body, typeof req.body)
     // Save User to Database
-    console.log(req.body);
+    
+    // Conversion des champs en types appropriés
+    const priceKilometer = parseFloat(req.body.price_kilometer); // Conversion en nombre décimal
+
     Car.create({
         plate_number: req.body.plate_number,
         model: req.body.model,
@@ -14,11 +17,14 @@ exports.addCar = (req, res) => {
         color: req.body.color,
         seating_capacity: req.body.seating_capacity,
         status: req.body.status,
+        price_kilometer: priceKilometer,
     })
     .then(car => {
         res.send({ message: "Car added successfully!", car });
     })
     .catch(err => {
+        console.log(req.body);
+        console.error('Error creating car:', err);
         res.status(500).send({ message: err.message });
     });
 };

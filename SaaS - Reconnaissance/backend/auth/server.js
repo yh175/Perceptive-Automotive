@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const paymentRoutes = require('./app/routes/paymentRoutes'); // Importer les routes
 
 const app = express();
 
@@ -35,6 +36,10 @@ app.get("/", (req, res) => {
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require("./app/routes/car.routes")(app);
+require("./app/routes/reservationRoutes")(app);
+
+// Utiliser les routes de paiement
+app.use('/api/payments', paymentRoutes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

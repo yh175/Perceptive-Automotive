@@ -27,9 +27,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       location_lat: {
         type: Sequelize.STRING,
+        allowNull: true
       },
       location_lon: {
         type: Sequelize.STRING,
+        allowNull: true
       },
       price_kilometer: {
         type: Sequelize.DECIMAL(10, 2),

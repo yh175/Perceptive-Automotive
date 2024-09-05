@@ -24,7 +24,7 @@ function LoginForm() {
   
         // Check user roles and navigate accordingly
         if (roles.includes('Admin') || roles.includes('Moderator')) {
-          navigate("/AdminPanel");
+          navigate("/Administration");
         } else if (roles.includes('Basic User')) {
           navigate("/Dashboard");
         } else {
@@ -65,9 +65,9 @@ function LoginForm() {
         <div className="row justify-content-center">
           <div className="col-6">
             <div className="form-floating  mb-4">
-              <input type="email" id="form2Example1" className="form-control" value={username}
+              <input type="text" id="form2Example1" className="form-control" value={username}
               onChange={(e) => setUsername(e.target.value)} />
-              <label className="form-label" htmlFor="form2Example1">Email</label>
+              <label className="form-label" htmlFor="form2Example1">Nom d'utilisateur</label>
             </div>        
           </div>
         </div>

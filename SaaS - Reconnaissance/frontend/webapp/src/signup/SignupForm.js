@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.css';
 import './PasswordStrength.css'; // Importer le fichier CSS
 
 function SignupForm() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +36,7 @@ function SignupForm() {
         return response.json();
       })
       .then((data) => {
-        setResponseText(`Réponse du serveur : ${JSON.stringify(data)}`);
+        navigate("/Connexion")
       })
       .catch((error) => {
         console.error("Erreur lors de la requête POST : ", error);
